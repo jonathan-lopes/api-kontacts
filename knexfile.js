@@ -1,4 +1,4 @@
-// Update with your config settings.
+require("dotenv").config();
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
@@ -12,9 +12,6 @@ module.exports = {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       port: process.env.DB_PORT,
-      ssl: {
-        rejectUnauthorized: false,
-      },
     },
     pool: {
       min: 2,

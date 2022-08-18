@@ -1,4 +1,4 @@
-const knex = require("../database/index");
+const knex = require("../database");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const loginSchema = require("../validations/loginSchema");
@@ -8,7 +8,7 @@ const login = async (req, res) => {
 
   try {
     await loginSchema.validate({ email, passwd });
-    
+
     const user = await knex("users").where({ email }).first();
 
     if (!user) {
@@ -22,7 +22,7 @@ const login = async (req, res) => {
     }
 
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "1m",
+      expiresIn: "30m",
     });
 
     return res.status(200).json({

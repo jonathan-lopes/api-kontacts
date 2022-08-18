@@ -1,4 +1,4 @@
-const knex = require("../database/index");
+const knex = require("../database");
 const userSchema = require("../validations/userSchema");
 const bcrypt = require("bcrypt");
 

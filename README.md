@@ -133,6 +133,8 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 `SALT_ROUNDS`
 
+`CORS_ORIGIN=https://kontactsignis.netlify.app/`
+
 ## Rodando localmente
 
 Clone o projeto

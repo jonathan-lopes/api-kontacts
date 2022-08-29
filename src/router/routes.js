@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const login = require("../controllers/login");
 const register = require("../controllers/user");
-const verifyLogin = require("../middleware/verifyLogin");
+const verifyLogin = require("../middlewares/verifyLogin");
 const contactsController = require("../controllers/contacts");
 
 const routes = Router();

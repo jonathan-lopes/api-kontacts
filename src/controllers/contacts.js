@@ -1,5 +1,5 @@
 const knex = require("../database");
-const { CrudError } = require("../helpers/apiErrors");
+const { CrudError, ForbiddenError } = require("../helpers/apiErrors");
 const contactsSchema = require("../validations/contactsSchema");
 
 const getAllContacts = async (req, res) => {
@@ -55,7 +55,7 @@ const deleteContact = async (req, res) => {
 
     return res.status(204).json();
   } else {
-    return res.status(401).json({ message: "Não autorizado" });
+    throw new ForbiddenError(`Não foi possível excluir o contato`);
   }
 };
 
@@ -84,7 +84,7 @@ const editContact = async (req, res) => {
 
     return res.status(204).json();
   } else {
-    return res.status(401).json({ message: "Não autorizado" });
+    throw new ForbiddenError(`Não foi possível atualizar o contato`);
   }
 };
 

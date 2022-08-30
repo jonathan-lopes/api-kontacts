@@ -1,7 +1,7 @@
 const knex = require("../database");
 const userSchema = require("../validations/userSchema");
 const bcrypt = require("bcrypt");
-const { ForbiddenError, CrudError } = require("../helpers/apiErrors");
+const { CrudError, ConflictError } = require("../helpers/apiErrors");
 
 const register = async (req, res) => {
   const { name, email, passwd } = req.body;
@@ -11,7 +11,7 @@ const register = async (req, res) => {
   const userEmail = await knex("users").where({ email }).first();
 
   if (userEmail) {
-    throw new ForbiddenError("E-mail já cadastrado");
+    throw new ConflictError("E-mail já cadastrado");
   }
 
   const pwdCrypt = await bcrypt.hash(passwd, Number(process.env.SALT_ROUNDS));

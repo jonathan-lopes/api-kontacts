@@ -2,7 +2,7 @@ const knex = require("../database");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const loginSchema = require("../validations/loginSchema");
-const { UnauthorizedError } = require("../helpers/apiErrors");
+const { BadRequestError } = require("../helpers/apiErrors");
 
 const login = async (req, res) => {
   const { email, passwd } = req.body;
@@ -12,13 +12,13 @@ const login = async (req, res) => {
   const user = await knex("users").where({ email }).first();
 
   if (!user) {
-    throw new UnauthorizedError("O usuário não foi encontrado");
+    throw new BadRequestError("E-mail ou senha inválidos");
   }
 
   const pwdBcrypt = await bcrypt.compare(passwd, user.passwd);
 
   if (!pwdBcrypt) {
-    throw new UnauthorizedError("Email e senha não confere");
+    throw new BadRequestError("E-mail ou senha inválidos");
   }
 
   const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {

@@ -35,6 +35,12 @@ class CrudError extends ApiError {
   }
 }
 
+class ConflictError extends ApiError {
+  constructor(message) {
+    super(message, 409);
+  }
+}
+
 module.exports = {
   ApiError,
   BadRequestError,
@@ -42,4 +48,5 @@ module.exports = {
   NotFoundError,
   UnauthorizedError,
   CrudError,
+  ConflictError,
 };

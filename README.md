@@ -131,7 +131,7 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 `JWT_SECRET`
 
-`SALT_ROUNDS`
+`SALT_ROUNDS=10`
 
 `CORS_ORIGIN=https://kontactsignis.netlify.app/`
 

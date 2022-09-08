@@ -1,4 +1,6 @@
-require("dotenv").config();
+require("dotenv").config({
+  path: process.env.NODE_ENV === "test" ? ".env.test" : ".env",
+});
 require("express-async-errors");
 const express = require("express");
 const router = require("./router/routes");
